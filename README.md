@@ -2,7 +2,7 @@
 personal-project-harilalafitah created by GitHub Classroom
 Documentation de l'application recipes app
 
-1. Introduction:
+1. Introduction: 
 
 Objectif de l'application:
 Recipes app est une application de recettes culinaires vise à fournir aux utilisateurs une expérience pratique et inspirante en matière de cuisine en offrant une collection diversifiée de recettes avec des fonctionnalités avancées de recherche et de partage.
