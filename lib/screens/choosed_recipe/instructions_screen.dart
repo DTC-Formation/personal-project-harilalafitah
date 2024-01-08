@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:recipes_app/models/food.dart';
-import 'package:recipes_app/widgets/appbar_customable.dart';
+import 'package:recipes_app/models/Recipe_model/food.dart';
+import 'package:recipes_app/screens/ingredients_screen.dart';
+import 'package:recipes_app/widgets/app_bar/appbar_customable.dart';
 
 class Instructions extends StatefulWidget {
   const Instructions({super.key, required this.food});
@@ -20,7 +22,31 @@ class _InstructionsState extends State<Instructions> {
         automaticallyImplyLeading: false,
         title: Padding(
           padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-          child: AppBarCustom(titre: "Instructions"),
+          child: AppBarCustom(
+            titre: "Instructions",
+            icon1: Icon(
+              CupertinoIcons.chevron_back,
+              color: Colors.blueAccent,
+            ),
+            onPressed1: () {
+              Navigator.pop(context);
+            },
+            icon2: Icon(
+              Icons.shopping_bag_outlined,
+              size: 25,
+              color: Colors.lightBlue,
+            ),
+            onPressed2: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => IngredientsScreen(
+                    food: widget.food,
+                  ),
+                ),
+              );
+            },
+          ),
         ),
         toolbarHeight: 75.0,
       ),

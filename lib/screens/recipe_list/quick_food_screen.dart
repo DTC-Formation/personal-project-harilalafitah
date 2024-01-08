@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:recipes_app/models/food.dart';
-import 'package:recipes_app/widgets/food_card.dart';
-import 'package:recipes_app/widgets/appbar_customable.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:recipes_app/models/Recipe_model/food.dart';
+import 'package:recipes_app/widgets/app_bar/appbar_customable.dart';
+import 'package:recipes_app/widgets/app_bar/notif_dialog.dart';
+import 'package:recipes_app/widgets/recipes_widget/food_card.dart';
 
 class QuickFoodScreen extends StatefulWidget {
   const QuickFoodScreen({super.key});
@@ -19,7 +22,27 @@ class _QuickFoodState extends State<QuickFoodScreen> {
         automaticallyImplyLeading: false,
         title: Padding(
           padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-          child: AppBarCustom(titre: "Quick & Fast"),
+          child: AppBarCustom(
+            titre: "Quick & Fast",
+            icon1: Icon(
+              CupertinoIcons.chevron_back,
+              color: Colors.blueAccent,
+            ),
+            onPressed1: () {
+              Navigator.pop(context);
+            },
+            icon2: Icon(
+              Iconsax.notification,
+              color: Colors.yellow.shade800,
+            ),
+            onPressed2: () {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return NotifDialog();
+                  });
+            },
+          ),
         ),
         toolbarHeight: 75.0,
       ),

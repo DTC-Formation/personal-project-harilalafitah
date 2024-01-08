@@ -1,13 +1,18 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:recipes_app/widgets/notif_dialog.dart';
 
 class AppBarCustom extends StatefulWidget {
   final String titre;
+  final Icon icon1;
+  final Function onPressed1;
+  final Icon icon2;
+  final Function onPressed2;
   const AppBarCustom({
     super.key,
     required this.titre,
+    required this.icon2,
+    required this.icon1,
+    required this.onPressed1,
+    required this.onPressed2,
   });
 
   @override
@@ -21,7 +26,7 @@ class _QuickScreenAppBarState extends State<AppBarCustom> {
       children: [
         IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            widget.onPressed1();
           },
           style: IconButton.styleFrom(
             backgroundColor: Colors.white,
@@ -30,8 +35,7 @@ class _QuickScreenAppBarState extends State<AppBarCustom> {
               borderRadius: BorderRadiusDirectional.circular(15),
             ),
           ),
-          color: Colors.black,
-          icon: Icon(CupertinoIcons.chevron_back),
+          icon: widget.icon1,
         ),
         Spacer(),
         Text(
@@ -44,11 +48,7 @@ class _QuickScreenAppBarState extends State<AppBarCustom> {
         Spacer(),
         IconButton(
           onPressed: () {
-            showDialog(
-                context: context,
-                builder: (context) {
-                  return NotifDialog();
-                });
+            widget.onPressed2();
           },
           style: IconButton.styleFrom(
             backgroundColor: Colors.white,
@@ -57,8 +57,7 @@ class _QuickScreenAppBarState extends State<AppBarCustom> {
               borderRadius: BorderRadiusDirectional.circular(15),
             ),
           ),
-          color: Colors.black,
-          icon: Icon(Iconsax.notification),
+          icon: widget.icon2,
         ),
       ],
     );

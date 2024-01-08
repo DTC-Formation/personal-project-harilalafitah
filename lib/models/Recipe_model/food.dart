@@ -1,4 +1,4 @@
-import 'package:recipes_app/models/categories_model.dart';
+import 'package:recipes_app/models/Recipe_model/categories_model.dart';
 
 class Food {
   String name;
@@ -147,7 +147,7 @@ final List<Food> foods = [
     reviews: 30,
     isLiked: false,
     description:
-        "Stuff peppers with rice and black beans, then top with chilli cheese and fresh guacamole for an easy vegetarian family meal. If the kids don't like spice, use a mild cheese instead",
+        "Stuff peppers with rice and black beans, then top with chilli cheese and fresh guacamole for an easy vegetarian family meal. If the kids don't like spice, use a mild cheese instead.",
     categories: categories[2],
     serves: 2,
     prepTime: 15,

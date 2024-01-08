@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
-import 'package:recipes_app/models/food.dart';
+import 'package:recipes_app/models/Recipe_model/food.dart';
 import 'package:recipes_app/models/providers/isfav_provider.dart';
-import 'package:recipes_app/screens/quick_food_screen.dart';
-import 'package:recipes_app/screens/recipes_screen.dart';
+import 'package:recipes_app/screens/recipe_list/quick_food_screen.dart';
+import 'package:recipes_app/screens/recipe_screen.dart';
 
 class QuickAndFastList extends StatefulWidget {
   const QuickAndFastList({super.key});
@@ -51,7 +51,7 @@ class _QuickAndFastListState extends State<QuickAndFastList> {
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => RecipeScreen(food: foods[index]),
+                    builder: (context) => RecipesScreen(food: foods[index]),
                   ),
                 ),
                 child: Container(

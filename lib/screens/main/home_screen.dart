@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:recipes_app/widgets/home_app_bar.dart';
-import 'package:recipes_app/widgets/home_search_bar.dart';
-import 'package:recipes_app/widgets/quick_and_fast_list.dart';
+import 'package:recipes_app/widgets/app_bar/home_app_bar.dart';
+import 'package:recipes_app/widgets/app_bar/home_search_bar.dart';
+import 'package:recipes_app/widgets/recipes_widget/categories.dart';
+import 'package:recipes_app/widgets/recipes_widget/quick_and_fast_list.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -37,16 +38,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              // SizedBox(height: 20.0),
-              // Text(
-              //   'Categories',
-              //   style: TextStyle(
-              //     fontSize: 20.0,
-              //     fontWeight: FontWeight.bold,
-              //   ),
-              // ),
-              // SizedBox(height: 20.0),
-              // Categories(currentCat: currentCat),
+              SizedBox(height: 20.0),
+              Text(
+                'Categories',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 20.0),
+              Categories(currentCat: currentCat),
               SizedBox(height: 20.0),
               QuickAndFastList(),
               SizedBox(height: 30.0),

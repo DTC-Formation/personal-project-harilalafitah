@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:recipes_app/screens/fav_foods_screen.dart';
-import 'package:recipes_app/screens/home_screen.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:recipes_app/screens/main/home_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});

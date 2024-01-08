@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
-import 'package:recipes_app/models/food.dart';
+import 'package:recipes_app/models/Recipe_model/food.dart';
 import 'package:recipes_app/models/providers/isfav_provider.dart';
-import 'package:recipes_app/screens/recipes_screen.dart';
+import 'package:recipes_app/screens/recipe_screen.dart';
 
 class FoodCard extends StatefulWidget {
   final Food food;
@@ -20,7 +20,10 @@ class _FoodCardState extends State<FoodCard> {
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => RecipeScreen(food: widget.food),
+          builder: (context) => RecipesScreen(food: widget.food),
+          // RecipeScreen(
+          //   food: widget.food,
+          // ),
         ),
       ),
       child: SizedBox(

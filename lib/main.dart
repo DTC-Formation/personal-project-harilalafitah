@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:recipes_app/models/food.dart';
+import 'package:recipes_app/models/Recipe_model/food.dart';
 import 'package:recipes_app/models/providers/isfav_provider.dart';
-import 'package:recipes_app/screens/main_screen.dart';
+import 'package:recipes_app/screens/main/main_screen.dart';
 
 void main() {
   runApp(const MyApp());

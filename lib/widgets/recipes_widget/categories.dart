@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:recipes_app/models/categories_model.dart';
+import 'package:recipes_app/models/Recipe_model/categories_model.dart';
 
 class Categories extends StatelessWidget {
   const Categories({

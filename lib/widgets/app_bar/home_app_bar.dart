@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:recipes_app/widgets/notif_dialog.dart';
+import 'package:recipes_app/widgets/app_bar/notif_dialog.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({
@@ -29,6 +29,7 @@ class HomeAppBar extends StatelessWidget {
                 });
           },
           style: IconButton.styleFrom(
+            foregroundColor: Colors.yellow.shade800,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
             ),

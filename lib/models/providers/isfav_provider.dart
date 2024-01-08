@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:recipes_app/models/food.dart';
+import 'package:recipes_app/models/Recipe_model/food.dart';
 
 class IsFavProvider with ChangeNotifier {
   final List<Food> _foods;
