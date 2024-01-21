@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 //Get the recipe
 class RecipeFromApi {
   final int id, totalTime, serves;
-  final String title, image, description;
+  final String title, image;
 
   RecipeFromApi({
     required this.id,
@@ -13,7 +13,6 @@ class RecipeFromApi {
     required this.image,
     required this.totalTime,
     required this.serves,
-    required this.description,
   });
   factory RecipeFromApi.fromMap(Map<String, dynamic> map) {
     return RecipeFromApi(
@@ -22,7 +21,6 @@ class RecipeFromApi {
       serves: map['servings'],
       title: map['title'],
       image: map['image'],
-      description: map['summary'],
     );
   }
 
@@ -39,7 +37,7 @@ class RecipeManager {
 
   Future<void> fetchData() async {
     final url =
-        'https://api.spoonacular.com/recipes/random?number=1&apiKey=28525db30a324e328b38c3c422c4f6b3';
+        'https://api.spoonacular.com/recipes/random?number=20&apiKey=6f4fe875f0fd4edc9b34539deabd7bf7';
     try {
       final response = await http.get(Uri.parse(url));
 

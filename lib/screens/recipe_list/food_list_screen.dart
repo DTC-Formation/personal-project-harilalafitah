@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:recipes_app/models/Recipe_model/food.dart';
+import 'package:recipes_app/models/Recipe_model/recipe_from_api.dart';
 import 'package:recipes_app/widgets/app_bar/appbar_customable.dart';
 import 'package:recipes_app/widgets/app_bar/notif_dialog.dart';
 import 'package:recipes_app/widgets/recipes_widget/food_card.dart';
@@ -17,13 +17,13 @@ class FoodListScreen extends StatefulWidget {
 class _QuickFoodState extends State<FoodListScreen> {
   @override
   Widget build(BuildContext context) {
-    List<Food> filteredFoods = foods;
+    List<RecipeInfo> filteredFoods = GetRecipeData.recipeInfos;
 
-    if (widget.selectedCategory != "All") {
-      filteredFoods = foods
-          .where((food) => food.categories.contains(widget.selectedCategory))
-          .toList();
-    }
+    // if (widget.selectedCategory != "All") {
+    //   filteredFoods = foods
+    //       .where((food) => food.categories.contains(widget.selectedCategory))
+    //       .toList();
+    // }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(0, 255, 255, 255),
@@ -31,7 +31,7 @@ class _QuickFoodState extends State<FoodListScreen> {
         title: Padding(
           padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
           child: AppBarCustom(
-            titre: "Quick & Fast",
+            titre: "Available recipes",
             icon1: Icon(
               CupertinoIcons.chevron_back,
               color: Colors.blueAccent,

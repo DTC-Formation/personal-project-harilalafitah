@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
-import 'package:recipes_app/models/Recipe_model/food.dart';
+import 'package:recipes_app/models/Recipe_model/recipe_from_api.dart';
 import 'package:recipes_app/models/providers/isfav_provider.dart';
+import 'package:recipes_app/models/providers/rating_provider.dart';
 import 'package:recipes_app/screens/choosed_recipe/recipe_screen.dart';
 
 class FoodCard extends StatefulWidget {
-  final Food food;
+  final RecipeInfo food;
   const FoodCard({super.key, required this.food});
 
   @override
@@ -36,14 +37,14 @@ class _FoodCardState extends State<FoodCard> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     image: DecorationImage(
-                      image: AssetImage(widget.food.image),
+                      image: NetworkImage(widget.food.recipe.image),
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
                 SizedBox(height: 10),
                 Text(
-                  widget.food.name,
+                  widget.food.recipe.title,
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
@@ -62,7 +63,7 @@ class _FoodCardState extends State<FoodCard> {
                         ),
                         SizedBox(width: 5),
                         Text(
-                          "${widget.food.kcal} Kcal/serv",
+                          "${widget.food.nutrients[0].amount} Kcal",
                           style: TextStyle(
                             fontSize: 10,
                             color: Colors.blue.shade800,
@@ -87,7 +88,7 @@ class _FoodCardState extends State<FoodCard> {
                         ),
                         SizedBox(width: 5),
                         Text(
-                          "${widget.food.totalTime} Min",
+                          "${widget.food.recipe.totalTime} Min",
                           style: TextStyle(
                             fontSize: 10,
                             color: Colors.blue.shade800,
@@ -106,17 +107,9 @@ class _FoodCardState extends State<FoodCard> {
                     ),
                     SizedBox(width: 5),
                     Text(
-                      "${widget.food.rate}/5",
+                      "${context.watch<RatingProvider>().getRecipeRating(widget.food)}/5",
                       style: TextStyle(
                         color: Colors.black87,
-                        fontSize: 12.0,
-                      ),
-                    ),
-                    SizedBox(width: 5),
-                    Text(
-                      "(${widget.food.reviews} Reviews)",
-                      style: TextStyle(
-                        color: Colors.black54,
                         fontSize: 12.0,
                       ),
                     ),
@@ -140,7 +133,7 @@ class _FoodCardState extends State<FoodCard> {
                   fixedSize: Size(30, 30),
                 ),
                 iconSize: 20,
-                icon: context.watch<IsFavProvider>().isFoodLiked(widget.food)
+                icon: context.watch<IsFavProvider>().isRecipeLiked(widget.food)
                     ? Icon(Iconsax.heart5, color: Colors.red)
                     : Icon(
                         Iconsax.heart,

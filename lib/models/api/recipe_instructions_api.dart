@@ -54,7 +54,7 @@ class InstructionsManager {
 
   Future<void> fetchDataForRecipe(int recipeId) async {
     final url =
-        'https://api.spoonacular.com/recipes/$recipeId/analyzedInstructions?apiKey=28525db30a324e328b38c3c422c4f6b3';
+        'https://api.spoonacular.com/recipes/$recipeId/analyzedInstructions?apiKey=6f4fe875f0fd4edc9b34539deabd7bf7';
 
     try {
       final response = await http.get(Uri.parse(url));
@@ -65,8 +65,10 @@ class InstructionsManager {
 
         instructs.clear();
         for (final instructionData in data) {
-          instructs.add(AnalyzedInstructions.fromMap(instructionData));
-          print('Instruction added successfully');
+          if (instructionData['steps'] != null) {
+            instructs.add(AnalyzedInstructions.fromMap(instructionData));
+            print('Instruction added successfully');
+          }
         }
       } else {
         throw Exception('Failed to load data from the API');

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
-import 'package:recipes_app/models/Recipe_model/food.dart';
+import 'package:recipes_app/models/Recipe_model/recipe_from_api.dart';
 import 'package:recipes_app/models/providers/isfav_provider.dart';
 import 'package:recipes_app/screens/choosed_recipe/recipe_screen.dart';
 import 'package:recipes_app/screens/recipe_list/food_list_screen.dart';
@@ -11,19 +11,21 @@ class RecipeListHome extends StatefulWidget {
   const RecipeListHome({super.key, required this.selectedCategory});
 
   @override
-  State<RecipeListHome> createState() => _QuickAndFastListState();
+  State<RecipeListHome> createState() => _RecipeListHomeListState();
 }
 
-class _QuickAndFastListState extends State<RecipeListHome> {
+class _RecipeListHomeListState extends State<RecipeListHome> {
   @override
   Widget build(BuildContext context) {
-    List<Food> filteredFoods = foods;
+    List<RecipeInfo> recipeInfos = GetRecipeData.recipeInfos;
 
-    if (widget.selectedCategory != "All") {
-      filteredFoods = foods
-          .where((food) => food.categories.contains(widget.selectedCategory))
-          .toList();
-    }
+    // List<Food> filteredFoods = foods;
+
+    // if (widget.selectedCategory != "All") {
+    //   filteredFoods = foods
+    //       .where((food) => food.categories.contains(widget.selectedCategory))
+    //       .toList();
+    // }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,7 +34,8 @@ class _QuickAndFastListState extends State<RecipeListHome> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              widget.selectedCategory,
+              // widget.selectedCategory,
+              'All',
               style: TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.bold,
@@ -55,13 +58,13 @@ class _QuickAndFastListState extends State<RecipeListHome> {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: List.generate(
-              filteredFoods.length,
+              recipeInfos.length,
               (index) => GestureDetector(
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) =>
-                        RecipesScreen(food: filteredFoods[index]),
+                        RecipesScreen(food: recipeInfos[index]),
                   ),
                 ),
                 child: Container(
@@ -78,14 +81,15 @@ class _QuickAndFastListState extends State<RecipeListHome> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
                               image: DecorationImage(
-                                image: AssetImage(filteredFoods[index].image),
+                                image: NetworkImage(
+                                    recipeInfos[index].recipe.image),
                                 fit: BoxFit.cover,
                               ),
                             ),
                           ),
                           SizedBox(height: 10),
                           Text(
-                            filteredFoods[index].name,
+                            recipeInfos[index].recipe.title,
                             style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
@@ -105,7 +109,7 @@ class _QuickAndFastListState extends State<RecipeListHome> {
                                   ),
                                   SizedBox(width: 5),
                                   Text(
-                                    "${filteredFoods[index].kcal} Kcal/serv",
+                                    "${recipeInfos[index].nutrients[0].amount} ${recipeInfos[index].nutrients[0].unit}",
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: Colors.blue.shade800,
@@ -130,7 +134,7 @@ class _QuickAndFastListState extends State<RecipeListHome> {
                                   ),
                                   SizedBox(width: 5),
                                   Text(
-                                    "${filteredFoods[index].totalTime} Mins",
+                                    "${recipeInfos[index].recipe.totalTime} Mins",
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: Colors.blue.shade800,
@@ -150,7 +154,7 @@ class _QuickAndFastListState extends State<RecipeListHome> {
                             setState(() {
                               context
                                   .read<IsFavProvider>()
-                                  .toggleIsLiked(foods[index]);
+                                  .toggleIsLiked(recipeInfos[index]);
                             });
                           },
                           style: IconButton.styleFrom(
@@ -161,12 +165,12 @@ class _QuickAndFastListState extends State<RecipeListHome> {
                           icon: Icon(
                             context
                                     .watch<IsFavProvider>()
-                                    .isFoodLiked(foods[index])
+                                    .isRecipeLiked(recipeInfos[index])
                                 ? Iconsax.heart5
                                 : Iconsax.heart,
                             color: context
                                     .watch<IsFavProvider>()
-                                    .isFoodLiked(foods[index])
+                                    .isRecipeLiked(recipeInfos[index])
                                 ? Colors.red
                                 : Colors.black,
                           ),

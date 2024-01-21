@@ -9,6 +9,7 @@ class RecipeInfo {
   final List<Ingredient> ingredients;
   final List<Nutrient> nutrients;
   bool isLiked;
+  double rating;
 
   RecipeInfo({
     required this.recipe,
@@ -16,11 +17,13 @@ class RecipeInfo {
     required this.ingredients,
     required this.nutrients,
     this.isLiked = false,
+    this.rating = 0.0,
   });
 
   void toggleLiked() {
     isLiked = !isLiked;
   }
+
   // @override
   // String toString() {
   //   return 'RecipeInfo {'
@@ -42,7 +45,7 @@ class GetRecipeData {
     try {
       await recipeManager.fetchData();
 
-      _recipeInfos.clear();
+      // _recipeInfos.clear();
 
       if (recipeManager.recipes.isNotEmpty) {
         for (var recipe in recipeManager.recipes) {

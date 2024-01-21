@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:recipes_app/screens/main/fav_foods_screen.dart';
 import 'package:recipes_app/screens/main/home_screen.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:recipes_app/screens/main/search_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -12,41 +13,48 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   int currrentTab = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CurvedNavigationBar(
-        key: _bottomNavigationKey,
-        index: 0,
-        height: 50.0,
-        items: <Widget>[
-          Icon(
-            (currrentTab == 0) ? Iconsax.home5 : Iconsax.home,
-            color: (currrentTab == 0) ? Colors.lightBlue : Colors.white,
-          ),
-          Icon(
-            (currrentTab == 1) ? Iconsax.heart5 : Iconsax.heart,
-            color: (currrentTab == 1) ? Colors.red : Colors.white,
-          ),
-          Icon(
-            (currrentTab == 2) ? Iconsax.star5 : Iconsax.star,
-            color: (currrentTab == 2) ? Colors.lightBlue : Colors.white,
-          ),
-        ],
+      bottomNavigationBar: Container(
         color: Colors.grey.shade800,
-        buttonBackgroundColor: Colors.grey.shade800,
-        backgroundColor: Color.fromARGB(0, 1, 1, 1),
-        animationCurve: Curves.easeInOut,
-        animationDuration: Duration(milliseconds: 600),
-        onTap: (index) {
-          setState(() {
-            currrentTab = index;
-          });
-        },
-        letIndexChange: (index) => true,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+          child: GNav(
+            selectedIndex: 0,
+            backgroundColor: Colors.grey.shade800,
+            color: Colors.white,
+            tabBackgroundColor: Colors.grey.shade300,
+            padding: EdgeInsets.all(20.0),
+            gap: 10,
+            tabs: [
+              GButton(
+                gap: 8,
+                icon: (currrentTab == 0) ? Iconsax.home5 : Iconsax.home,
+                iconActiveColor: Colors.lightBlue,
+                text: 'Home',
+              ),
+              GButton(
+                icon: (currrentTab == 1) ? Iconsax.heart5 : Iconsax.heart,
+                iconActiveColor: Colors.red,
+                text: 'Favorites',
+              ),
+              GButton(
+                gap: 8,
+                icon: Iconsax.search_normal,
+                iconActiveColor: Colors.lightBlue,
+                text: 'Search',
+              ),
+            ],
+            onTabChange: (index) {
+              setState(() {
+                currrentTab = index;
+              });
+            },
+          ),
+        ),
       ),
       body: Container(
         alignment: Alignment.center,
@@ -69,7 +77,7 @@ Widget getPage({required int index}) {
       break;
 
     case 2:
-      widget = Scaffold();
+      widget = SearchScreen();
       break;
   }
   return widget;

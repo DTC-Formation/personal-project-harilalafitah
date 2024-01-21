@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:recipes_app/models/Recipe_model/food.dart';
 import 'package:recipes_app/models/providers/isfav_provider.dart';
+import 'package:recipes_app/models/providers/rating_provider.dart';
 import 'package:recipes_app/screens/main/main_screen.dart';
 import 'package:recipes_app/models/Recipe_model/recipe_from_api.dart';
 
@@ -16,13 +16,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // GetRecipeData.fetchDataAndBuildRecipeInfos();
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => IsFavProvider(foods
-              // GetRecipeData.recipeInfos
-              ),
+          create: (_) => IsFavProvider(GetRecipeData.recipeInfos),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => RatingProvider(GetRecipeData.recipeInfos),
         ),
       ],
       child: MaterialApp(

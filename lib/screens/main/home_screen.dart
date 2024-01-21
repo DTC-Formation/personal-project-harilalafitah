@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recipes_app/models/Recipe_model/categories_model.dart';
 import 'package:recipes_app/widgets/app_bar/home_app_bar.dart';
-import 'package:recipes_app/widgets/app_bar/home_search_bar.dart';
 import 'package:recipes_app/widgets/recipes_widget/categories.dart';
 import 'package:recipes_app/widgets/recipes_widget/recipe_list_home.dart';
 
@@ -23,10 +22,11 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            HomeAppBar(),
-            SizedBox(height: 20.0),
-            HomeSearchBar(),
-            SizedBox(height: 20.0),
+            Padding(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: HomeAppBar(),
+            ),
+            SizedBox(height: 40.0),
             Container(
               width: double.infinity,
               height: 170,

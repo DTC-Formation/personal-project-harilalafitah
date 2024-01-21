@@ -35,7 +35,7 @@ class NutrientManager {
 
   Future<void> fetchData(int recipeId) async {
     final url =
-        'https://api.spoonacular.com/recipes/$recipeId/nutritionWidget.json?apiKey=28525db30a324e328b38c3c422c4f6b3';
+        'https://api.spoonacular.com/recipes/$recipeId/nutritionWidget.json?apiKey=6f4fe875f0fd4edc9b34539deabd7bf7';
 
     try {
       final response = await http.get(Uri.parse(url));

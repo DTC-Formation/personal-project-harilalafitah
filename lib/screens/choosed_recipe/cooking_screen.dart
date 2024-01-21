@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:recipes_app/models/Recipe_model/food.dart';
+import 'package:recipes_app/models/Recipe_model/recipe_from_api.dart';
 import 'package:recipes_app/screens/choosed_recipe/ingredients_screen.dart';
 import 'package:recipes_app/screens/choosed_recipe/instructions_screen.dart';
 import 'package:recipes_app/widgets/app_bar/appbar_customable.dart';
 
 class CookingPage extends StatefulWidget {
-  final Food food;
+  final RecipeInfo food;
   const CookingPage({super.key, required this.food});
 
   @override
