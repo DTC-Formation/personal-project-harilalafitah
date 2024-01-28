@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:provider/provider.dart';
 import 'package:recipes_app/models/Recipe_model/recipe_from_api.dart';
+import 'package:recipes_app/models/providers/recipe_provider.dart';
 import 'package:recipes_app/widgets/app_bar/appbar_customable.dart';
 import 'package:recipes_app/widgets/app_bar/notif_dialog.dart';
 import 'package:recipes_app/widgets/recipes_widget/food_card.dart';
@@ -17,7 +19,7 @@ class FoodListScreen extends StatefulWidget {
 class _QuickFoodState extends State<FoodListScreen> {
   @override
   Widget build(BuildContext context) {
-    List<RecipeInfo> filteredFoods = GetRecipeData.recipeInfos;
+    List<RecipeInfo> filteredFoods = context.watch<RecipeProvider>().recipeInfo;
 
     // if (widget.selectedCategory != "All") {
     //   filteredFoods = foods

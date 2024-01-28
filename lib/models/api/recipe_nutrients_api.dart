@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:recipes_app/models/api/api_key.dart';
 
 //Get the recipe nutrition by ID
 class Nutrient {
@@ -16,6 +17,15 @@ class Nutrient {
     required this.percentOfDailyNeeds,
   });
 
+  Map<String, dynamic> toMap() {
+    return {
+      'name': name,
+      'amount': amount,
+      'unit': unit,
+      'percentOfDailyNeeds': percentOfDailyNeeds,
+    };
+  }
+
   factory Nutrient.fromMap(Map<String, dynamic> map) {
     return Nutrient(
       name: map['name'] ?? '',
@@ -24,18 +34,20 @@ class Nutrient {
       percentOfDailyNeeds: map['percentOfDailyNeeds']?.toDouble() ?? 0.0,
     );
   }
-  // @override
-  // String toString() {
-  //   return 'Nutrient {name: $name, amount: $amount $unit, percentOfDailyNeeds: $percentOfDailyNeeds}';
-  // }
+  @override
+  String toString() {
+    return 'Nutrient {name: $name, amount: $amount $unit, percentOfDailyNeeds: $percentOfDailyNeeds}';
+  }
 }
 
 class NutrientManager {
   List<Nutrient> nutrients = [];
 
+  final apikey = APIKey();
+
   Future<void> fetchData(int recipeId) async {
     final url =
-        'https://api.spoonacular.com/recipes/$recipeId/nutritionWidget.json?apiKey=6f4fe875f0fd4edc9b34539deabd7bf7';
+        'https://api.spoonacular.com/recipes/$recipeId/nutritionWidget.json?apiKey=${apikey.apikey2}';
 
     try {
       final response = await http.get(Uri.parse(url));

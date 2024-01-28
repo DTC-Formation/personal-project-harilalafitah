@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:recipes_app/models/api/api_key.dart';
 
 //Get the recipe instructions by ID
 class AnalyzedInstructions {
@@ -12,6 +13,13 @@ class AnalyzedInstructions {
     required this.steps,
   });
 
+  Map<String, dynamic> toMap() {
+    return {
+      'name': name,
+      'steps': steps.map((step) => step.toMap()).toList(),
+    };
+  }
+
   factory AnalyzedInstructions.fromMap(Map<String, dynamic> map) {
     return AnalyzedInstructions(
       name: map['name'] ?? '',
@@ -22,10 +30,10 @@ class AnalyzedInstructions {
     );
   }
 
-  // @override
-  // String toString() {
-  //   return 'AnalyzedInstructions {name: $name, steps: $steps}';
-  // }
+  @override
+  String toString() {
+    return 'AnalyzedInstructions {name: $name, steps: $steps}';
+  }
 }
 
 class InstructionStep {
@@ -37,24 +45,33 @@ class InstructionStep {
     required this.step,
   });
 
+  Map<String, dynamic> toMap() {
+    return {
+      'number': number,
+      'step': step,
+    };
+  }
+
   factory InstructionStep.fromMap(Map<String, dynamic> map) {
     return InstructionStep(
       number: map['number'] ?? 0,
       step: map['step'] ?? '',
     );
   }
-  // @override
-  // String toString() {
-  //   return 'InstructionStep {number: $number, step: $step}';
-  // }
+  @override
+  String toString() {
+    return 'InstructionStep {number: $number, step: $step}';
+  }
 }
 
 class InstructionsManager {
   List<AnalyzedInstructions> instructs = [];
 
+  final apikey = APIKey();
+
   Future<void> fetchDataForRecipe(int recipeId) async {
     final url =
-        'https://api.spoonacular.com/recipes/$recipeId/analyzedInstructions?apiKey=6f4fe875f0fd4edc9b34539deabd7bf7';
+        'https://api.spoonacular.com/recipes/$recipeId/analyzedInstructions?apiKey=${apikey.apikey2}';
 
     try {
       final response = await http.get(Uri.parse(url));

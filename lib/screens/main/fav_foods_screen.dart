@@ -3,7 +3,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 import 'package:recipes_app/models/Recipe_model/categories_model.dart';
 import 'package:recipes_app/models/Recipe_model/recipe_from_api.dart';
-import 'package:recipes_app/models/providers/isfav_provider.dart';
+import 'package:recipes_app/models/providers/recipe_provider.dart';
 import 'package:recipes_app/screens/recipe_list/food_list_screen.dart';
 import 'package:recipes_app/widgets/app_bar/appbar_customable.dart';
 import 'package:recipes_app/widgets/app_bar/notif_dialog.dart';
@@ -23,8 +23,12 @@ class _FavoriteFoodScreenState extends State<FavoriteFoodScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final isFavProvider = context.watch<IsFavProvider>();
-    final favoriteRecipes = isFavProvider.favoriteRecipes;
+    // final isFavProvider = context.watch<IsFavProvider>();
+    // final favoriteRecipes = isFavProvider.favoriteRecipes;
+    // List<RecipeInfo> filteredFoods = favoriteRecipes;
+
+    List<RecipeInfo> favoriteRecipes =
+        context.watch<RecipeProvider>().favoriteRecipes;
     List<RecipeInfo> filteredFoods = favoriteRecipes;
 
     return Scaffold(

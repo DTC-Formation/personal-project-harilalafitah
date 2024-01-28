@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:recipes_app/models/Recipe_model/recipe_from_api.dart';
+import 'package:recipes_app/models/providers/recipe_provider.dart';
 import 'package:recipes_app/widgets/app_bar/home_search_bar.dart';
 import 'package:recipes_app/widgets/recipes_widget/food_card.dart';
 
@@ -11,17 +13,19 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  List<RecipeInfo> allFoods = GetRecipeData.recipeInfos;
+  late List<RecipeInfo> allFoods;
   List<RecipeInfo> displayedFoods = [];
 
   @override
   void initState() {
     super.initState();
-    displayedFoods.addAll(allFoods);
+    allFoods = context.read<RecipeProvider>().recipeInfo;
+    displayedFoods = List.from(allFoods);
   }
 
   void updateList(String value) {
     setState(() {
+      displayedFoods.clear();
       displayedFoods = allFoods
           .where((element) =>
               element.recipe.title.toLowerCase().contains(value.toLowerCase()))

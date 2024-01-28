@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+// import 'package:recipes_app/database/db_helper.dart';
 import 'package:recipes_app/widgets/app_bar/notif_dialog.dart';
 
 class HomeAppBar extends StatelessWidget {
@@ -23,7 +24,8 @@ class HomeAppBar extends StatelessWidget {
           ),
           Spacer(),
           IconButton(
-            onPressed: () {
+            onPressed: () async {
+              // await DbHelper.dbHelper.printDatabaseContent();
               showDialog(
                   context: context,
                   builder: (context) {

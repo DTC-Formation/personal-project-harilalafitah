@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 import 'package:recipes_app/models/Recipe_model/recipe_from_api.dart';
-import 'package:recipes_app/models/providers/isfav_provider.dart';
 import 'package:recipes_app/models/providers/rating_provider.dart';
+import 'package:recipes_app/models/providers/recipe_provider.dart';
 import 'package:recipes_app/screens/choosed_recipe/recipe_screen.dart';
 
 class FoodCard extends StatefulWidget {
@@ -124,7 +124,8 @@ class _FoodCardState extends State<FoodCard> {
                 onPressed: () {
                   setState(
                     () {
-                      context.read<IsFavProvider>().toggleIsLiked(widget.food);
+                      widget.food.toggleLiked();
+                      context.read<RecipeProvider>().updateIsLiked(widget.food);
                     },
                   );
                 },
@@ -133,11 +134,34 @@ class _FoodCardState extends State<FoodCard> {
                   fixedSize: Size(30, 30),
                 ),
                 iconSize: 20,
-                icon: context.watch<IsFavProvider>().isRecipeLiked(widget.food)
+                icon: widget.food.isLiked
                     ? Icon(Iconsax.heart5, color: Colors.red)
                     : Icon(
                         Iconsax.heart,
+                        color: Colors.red,
                       ),
+              ),
+            ),
+            Positioned(
+              top: 1,
+              left: 1,
+              child: IconButton(
+                onPressed: () {
+                  setState(
+                    () {
+                      context.read<RecipeProvider>().deleteRecipe(widget.food);
+                    },
+                  );
+                },
+                style: IconButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  fixedSize: Size(30, 30),
+                ),
+                iconSize: 20,
+                icon: Icon(
+                  Icons.delete_outline,
+                  size: 25,
+                ),
               ),
             ),
           ],

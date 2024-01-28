@@ -36,7 +36,7 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
                 ),
                 Spacer(),
                 Text(
-                  '${ingredient.metric.value.toInt()} ${ingredient.metric.unit}',
+                  '${ingredient.metric.value} ${ingredient.metric.unit}',
                   style: TextStyle(
                     fontSize: 16,
                   ),

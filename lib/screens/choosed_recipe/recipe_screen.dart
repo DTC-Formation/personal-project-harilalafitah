@@ -4,8 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 import 'package:recipes_app/models/Recipe_model/recipe_from_api.dart';
-import 'package:recipes_app/models/providers/isfav_provider.dart';
 import 'package:recipes_app/models/providers/rating_provider.dart';
+import 'package:recipes_app/models/providers/recipe_provider.dart';
 import 'package:recipes_app/screens/choosed_recipe/cooking_screen.dart';
 import 'package:recipes_app/widgets/app_bar/notif_dialog.dart';
 import 'package:recipes_app/widgets/rating_widget/rating_widget.dart';
@@ -64,15 +64,14 @@ class _RecipesDetailsState extends State<RecipesScreen> {
                 ),
                 onPressed: () {
                   setState(() {
-                    context.read<IsFavProvider>().toggleIsLiked(widget.food);
+                    widget.food.toggleLiked();
+                    context.read<RecipeProvider>().updateIsLiked(widget.food);
                   });
                 },
                 icon: Icon(
-                  context.watch<IsFavProvider>().isRecipeLiked(widget.food)
-                      ? Iconsax.heart5
-                      : Iconsax.heart,
+                  widget.food.isLiked ? Iconsax.heart5 : Iconsax.heart,
                   size: 20,
-                  color: widget.food.isLiked ? Colors.red : Colors.black54,
+                  color: Colors.red,
                 ),
               ),
             ),

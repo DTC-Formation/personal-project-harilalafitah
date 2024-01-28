@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 import 'package:recipes_app/models/Recipe_model/recipe_from_api.dart';
-import 'package:recipes_app/models/providers/isfav_provider.dart';
+import 'package:recipes_app/models/providers/recipe_provider.dart';
 import 'package:recipes_app/screens/choosed_recipe/recipe_screen.dart';
 import 'package:recipes_app/screens/recipe_list/food_list_screen.dart';
 
@@ -17,7 +17,7 @@ class RecipeListHome extends StatefulWidget {
 class _RecipeListHomeListState extends State<RecipeListHome> {
   @override
   Widget build(BuildContext context) {
-    List<RecipeInfo> recipeInfos = GetRecipeData.recipeInfos;
+    List<RecipeInfo> recipeInfos = context.watch<RecipeProvider>().recipeInfo;
 
     // List<Food> filteredFoods = foods;
 
@@ -152,9 +152,10 @@ class _RecipeListHomeListState extends State<RecipeListHome> {
                         child: IconButton(
                           onPressed: () {
                             setState(() {
+                              recipeInfos[index].toggleLiked();
                               context
-                                  .read<IsFavProvider>()
-                                  .toggleIsLiked(recipeInfos[index]);
+                                  .read<RecipeProvider>()
+                                  .updateIsLiked(recipeInfos[index]);
                             });
                           },
                           style: IconButton.styleFrom(
@@ -163,17 +164,10 @@ class _RecipeListHomeListState extends State<RecipeListHome> {
                           ),
                           iconSize: 20,
                           icon: Icon(
-                            context
-                                    .watch<IsFavProvider>()
-                                    .isRecipeLiked(recipeInfos[index])
-                                ? Iconsax.heart5
-                                : Iconsax.heart,
-                            color: context
-                                    .watch<IsFavProvider>()
-                                    .isRecipeLiked(recipeInfos[index])
-                                ? Colors.red
-                                : Colors.black,
-                          ),
+                              recipeInfos[index].isLiked
+                                  ? Iconsax.heart5
+                                  : Iconsax.heart,
+                              color: Colors.red),
                         ),
                       ),
                     ],

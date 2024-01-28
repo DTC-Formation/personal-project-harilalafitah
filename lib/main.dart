@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:recipes_app/models/providers/isfav_provider.dart';
+import 'package:recipes_app/database/db_helper.dart';
 import 'package:recipes_app/models/providers/rating_provider.dart';
+import 'package:recipes_app/models/providers/recipe_provider.dart';
 import 'package:recipes_app/screens/main/main_screen.dart';
 import 'package:recipes_app/models/Recipe_model/recipe_from_api.dart';
 
 void main() async {
-  await GetRecipeData.fetchDataAndBuildRecipeInfos();
+  WidgetsFlutterBinding.ensureInitialized();
+  await DbHelper.dbHelper.initDatabase();
+  // await GetRecipeData.fetchDataAndBuildRecipeInfos();
+  // await GetRecipeData.insertData();
   runApp(const MyApp());
 }
 
@@ -19,11 +23,9 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => IsFavProvider(GetRecipeData.recipeInfos),
-        ),
-        ChangeNotifierProvider(
           create: (_) => RatingProvider(GetRecipeData.recipeInfos),
         ),
+        ChangeNotifierProvider(create: (_) => RecipeProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
