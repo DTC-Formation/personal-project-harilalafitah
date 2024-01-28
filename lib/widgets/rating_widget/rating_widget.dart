@@ -3,12 +3,15 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 import 'package:recipes_app/models/Recipe_model/recipe_from_api.dart';
-import 'package:recipes_app/models/providers/rating_provider.dart';
+import 'package:recipes_app/models/providers/recipe_provider.dart';
 
 class RatingBarWidget extends StatefulWidget {
   final RecipeInfo recipeInfo;
+  final void Function(double rating) onRatingChanged;
 
-  const RatingBarWidget({Key? key, required this.recipeInfo}) : super(key: key);
+  const RatingBarWidget(
+      {Key? key, required this.recipeInfo, required this.onRatingChanged})
+      : super(key: key);
 
   @override
   State<RatingBarWidget> createState() => _RatingBarWidgetState();
@@ -17,8 +20,7 @@ class RatingBarWidget extends StatefulWidget {
 class _RatingBarWidgetState extends State<RatingBarWidget> {
   @override
   Widget build(BuildContext context) {
-    // Retrieve the RatingProvider
-    RatingProvider ratingProvider = context.watch<RatingProvider>();
+    RecipeProvider ratingProvider = context.watch<RecipeProvider>();
 
     return Center(
       child: RatingBar.builder(
@@ -32,6 +34,7 @@ class _RatingBarWidgetState extends State<RatingBarWidget> {
           color: Colors.amber,
         ),
         onRatingUpdate: (rating) {
+          widget.onRatingChanged(rating);
           ratingProvider.updateRating(widget.recipeInfo, rating);
         },
       ),

@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 import 'package:recipes_app/models/Recipe_model/recipe_from_api.dart';
-import 'package:recipes_app/models/providers/rating_provider.dart';
 import 'package:recipes_app/models/providers/recipe_provider.dart';
 import 'package:recipes_app/screens/choosed_recipe/cooking_screen.dart';
 import 'package:recipes_app/widgets/app_bar/notif_dialog.dart';
@@ -24,6 +23,20 @@ class RecipesScreen extends StatefulWidget {
 }
 
 class _RecipesDetailsState extends State<RecipesScreen> {
+  late double currentRating;
+
+  @override
+  void initState() {
+    super.initState();
+    currentRating = widget.food.rating;
+  }
+
+  void updateRating(double rating) {
+    setState(() {
+      currentRating = rating;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -249,7 +262,7 @@ class _RecipesDetailsState extends State<RecipesScreen> {
                                 ),
                                 SizedBox(height: 3.0),
                                 Text(
-                                  '${context.watch<RatingProvider>().getRecipeRating(widget.food)}/5 stars',
+                                  '$currentRating/5 stars',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w600,
@@ -268,6 +281,9 @@ class _RecipesDetailsState extends State<RecipesScreen> {
               SizedBox(height: 20),
               RatingBarWidget(
                 recipeInfo: widget.food,
+                onRatingChanged: (double rating) {
+                  updateRating(rating);
+                },
               ),
               SizedBox(height: 5.0),
               Center(

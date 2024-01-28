@@ -55,7 +55,7 @@ class RecipeManager {
 
   Future<void> fetchData() async {
     final url =
-        'https://api.spoonacular.com/recipes/random?number=5&apiKey=${apikey.apikey2}';
+        'https://api.spoonacular.com/recipes/random?number=10&apiKey=${apikey.apikey2}';
     try {
       final response = await http.get(Uri.parse(url));
 

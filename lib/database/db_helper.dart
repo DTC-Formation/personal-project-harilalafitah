@@ -149,24 +149,33 @@ class DbHelper {
     );
   }
 
-  printDatabaseContent() async {
-    // Récupérer la liste de tous les enregistrements
-    List<RecipeInfo?> recipes = await DbHelper.dbHelper.getAllRecipes();
+  // Update the rating for a specific recipe
+  updateRating(RecipeInfo recipeInfo, double newRating) async {
+    await database.update(
+      tableName,
+      {ratingColumn: newRating.toString()},
+      where: '$idColumn=?',
+      whereArgs: [recipeInfo.id],
+    );
+  }
 
+  printDatabaseContent() async {
+    List<RecipeInfo?> recipes = await DbHelper.dbHelper.getAllRecipes();
+    print(recipes.length);
     // Afficher le contenu
-    recipes.forEach((recipe) {
-      if (recipe != null) {
-        print('Recipe ID: ${recipe.id}');
-        print('Recipe Name: ${recipe.recipe.title}');
-        print('Recipe totalTime: ${recipe.recipe.totalTime}');
-        print('Recipe servings: ${recipe.recipe.serves}');
-        print('Instructions: ${recipe.instructions}');
-        print('Ingredients: ${recipe.ingredients}');
-        print('Nutrients: ${recipe.nutrients}');
-        print('Is Liked: ${recipe.isLiked}');
-        print('Rating: ${recipe.rating}');
-        print('-------------------------');
-      }
-    });
+    // recipes.forEach((recipe) {
+    //   if (recipe != null) {
+    //     print('Recipe ID: ${recipe.id}');
+    //     print('Recipe Name: ${recipe.recipe.title}');
+    //     print('Recipe totalTime: ${recipe.recipe.totalTime}');
+    //     print('Recipe servings: ${recipe.recipe.serves}');
+    //     print('Instructions: ${recipe.instructions}');
+    //     print('Ingredients: ${recipe.ingredients}');
+    //     print('Nutrients: ${recipe.nutrients}');
+    //     print('Is Liked: ${recipe.isLiked}');
+    //     print('Rating: ${recipe.rating}');
+    //     print('-------------------------');
+    //   }
+    // });
   }
 }

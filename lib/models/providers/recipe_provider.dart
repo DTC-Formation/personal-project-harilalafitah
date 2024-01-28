@@ -26,6 +26,11 @@ class RecipeProvider extends ChangeNotifier {
     getRecipes();
   }
 
+  updateRating(RecipeInfo recipeInfo, double newRating) {
+    DbHelper.dbHelper.updateRating(recipeInfo, newRating);
+    getRecipes();
+  }
+
   deleteRecipe(RecipeInfo recipeInfo) {
     DbHelper.dbHelper.deleteRecipe(recipeInfo);
     getRecipes();

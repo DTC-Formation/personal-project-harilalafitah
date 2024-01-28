@@ -32,7 +32,7 @@ class RecipeInfo {
       'instructions': json.encode(instructions.map((i) => i.toMap()).toList()),
       'ingredients': json.encode(ingredients.map((i) => i.toMap()).toList()),
       'nutrients': json.encode(nutrients.map((n) => n.toMap()).toList()),
-      'isLiked': isLiked ? 1 : 0,
+      'isLiked': isLiked,
       'rating': rating,
     };
   }

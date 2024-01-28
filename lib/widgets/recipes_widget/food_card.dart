@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 import 'package:recipes_app/models/Recipe_model/recipe_from_api.dart';
-import 'package:recipes_app/models/providers/rating_provider.dart';
 import 'package:recipes_app/models/providers/recipe_provider.dart';
 import 'package:recipes_app/screens/choosed_recipe/recipe_screen.dart';
 
@@ -107,7 +106,7 @@ class _FoodCardState extends State<FoodCard> {
                     ),
                     SizedBox(width: 5),
                     Text(
-                      "${context.watch<RatingProvider>().getRecipeRating(widget.food)}/5",
+                      "${widget.food.rating}/5",
                       style: TextStyle(
                         color: Colors.black87,
                         fontSize: 12.0,
@@ -161,6 +160,7 @@ class _FoodCardState extends State<FoodCard> {
                 icon: Icon(
                   Icons.delete_outline,
                   size: 25,
+                  color: Colors.lightBlue,
                 ),
               ),
             ),

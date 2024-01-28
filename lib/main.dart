@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:recipes_app/database/db_helper.dart';
-import 'package:recipes_app/models/providers/rating_provider.dart';
+// import 'package:recipes_app/models/Recipe_model/recipe_from_api.dart';
 import 'package:recipes_app/models/providers/recipe_provider.dart';
 import 'package:recipes_app/screens/main/main_screen.dart';
-import 'package:recipes_app/models/Recipe_model/recipe_from_api.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,9 +21,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (_) => RatingProvider(GetRecipeData.recipeInfos),
-        ),
         ChangeNotifierProvider(create: (_) => RecipeProvider()),
       ],
       child: MaterialApp(

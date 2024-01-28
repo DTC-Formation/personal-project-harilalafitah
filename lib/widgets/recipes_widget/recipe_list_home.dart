@@ -170,6 +170,31 @@ class _RecipeListHomeListState extends State<RecipeListHome> {
                               color: Colors.red),
                         ),
                       ),
+                      Positioned(
+                        top: 1,
+                        left: 1,
+                        child: IconButton(
+                          onPressed: () {
+                            setState(
+                              () {
+                                context
+                                    .read<RecipeProvider>()
+                                    .deleteRecipe(recipeInfos[index]);
+                              },
+                            );
+                          },
+                          style: IconButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            fixedSize: Size(30, 30),
+                          ),
+                          iconSize: 20,
+                          icon: Icon(
+                            Icons.delete_outline,
+                            size: 25,
+                            color: Colors.lightBlue,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
