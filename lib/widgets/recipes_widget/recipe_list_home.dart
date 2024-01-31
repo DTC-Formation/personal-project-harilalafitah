@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
@@ -6,6 +8,7 @@ import 'package:recipes_app/models/providers/recipe_provider.dart';
 import 'package:recipes_app/screens/choosed_recipe/recipe_screen.dart';
 import 'package:recipes_app/screens/recipe_list/food_list_screen.dart';
 
+// Random recipes list for the home screen
 class RecipeListHome extends StatefulWidget {
   final String selectedCategory;
   const RecipeListHome({super.key, required this.selectedCategory});
@@ -17,7 +20,8 @@ class RecipeListHome extends StatefulWidget {
 class _RecipeListHomeListState extends State<RecipeListHome> {
   @override
   Widget build(BuildContext context) {
-    List<RecipeInfo> recipeInfos = context.watch<RecipeProvider>().recipeInfo;
+    List<RecipeInfo> recipeInfos =
+        context.watch<RecipeProvider>().randomRecipes;
 
     // List<Food> filteredFoods = foods;
 
@@ -33,7 +37,7 @@ class _RecipeListHomeListState extends State<RecipeListHome> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
+            const Text(
               // widget.selectedCategory,
               'All',
               style: TextStyle(
@@ -41,6 +45,7 @@ class _RecipeListHomeListState extends State<RecipeListHome> {
                 fontWeight: FontWeight.bold,
               ),
             ),
+            // Text button that take to the available recipes list
             TextButton(
               onPressed: () => Navigator.push(
                 context,
@@ -49,16 +54,16 @@ class _RecipeListHomeListState extends State<RecipeListHome> {
                       FoodListScreen(selectedCategory: widget.selectedCategory),
                 ),
               ),
-              child: Text("View all"),
+              child: const Text("View all"),
             ),
           ],
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
             children: List.generate(
-              recipeInfos.length,
+              min(10, recipeInfos.length),
               (index) => GestureDetector(
                 onTap: () => Navigator.push(
                   context,
@@ -68,7 +73,7 @@ class _RecipeListHomeListState extends State<RecipeListHome> {
                   ),
                 ),
                 child: Container(
-                  margin: EdgeInsets.only(right: 10),
+                  margin: const EdgeInsets.only(right: 10),
                   width: 200,
                   child: Stack(
                     children: [
@@ -80,6 +85,7 @@ class _RecipeListHomeListState extends State<RecipeListHome> {
                             height: 130,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
+                              // The recipe image
                               image: DecorationImage(
                                 image: NetworkImage(
                                     recipeInfos[index].recipe.image),
@@ -87,27 +93,29 @@ class _RecipeListHomeListState extends State<RecipeListHome> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
+                          // The recipe title
                           Text(
                             recipeInfos[index].recipe.title,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
                             ),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           Row(
                             children: [
+                              // The nutrient
                               Row(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Iconsax.flash_1,
                                     size: 18,
                                     color: Colors.lightBlue,
                                   ),
-                                  SizedBox(width: 5),
+                                  const SizedBox(width: 5),
                                   Text(
                                     "${recipeInfos[index].nutrients[0].amount} ${recipeInfos[index].nutrients[0].unit}",
                                     style: TextStyle(
@@ -117,22 +125,23 @@ class _RecipeListHomeListState extends State<RecipeListHome> {
                                   ),
                                 ],
                               ),
-                              SizedBox(width: 5),
+                              const SizedBox(width: 5),
                               Text(
                                 '|',
                                 style: TextStyle(
                                   color: Colors.blue.shade800,
                                 ),
                               ),
-                              SizedBox(width: 5),
+                              const SizedBox(width: 5),
+                              // the cooking time
                               Row(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Iconsax.clock,
                                     size: 18,
                                     color: Colors.lightBlue,
                                   ),
-                                  SizedBox(width: 5),
+                                  const SizedBox(width: 5),
                                   Text(
                                     "${recipeInfos[index].recipe.totalTime} Mins",
                                     style: TextStyle(
@@ -146,6 +155,7 @@ class _RecipeListHomeListState extends State<RecipeListHome> {
                           ),
                         ],
                       ),
+                      // Favorite button
                       Positioned(
                         top: 1,
                         right: 1,
@@ -159,8 +169,9 @@ class _RecipeListHomeListState extends State<RecipeListHome> {
                             });
                           },
                           style: IconButton.styleFrom(
-                            backgroundColor: Color.fromARGB(150, 255, 255, 255),
-                            fixedSize: Size(30, 30),
+                            backgroundColor:
+                                const Color.fromARGB(150, 255, 255, 255),
+                            fixedSize: const Size(30, 30),
                           ),
                           iconSize: 20,
                           icon: Icon(
@@ -170,6 +181,7 @@ class _RecipeListHomeListState extends State<RecipeListHome> {
                               color: Colors.red),
                         ),
                       ),
+                      // Delete button
                       Positioned(
                         top: 1,
                         left: 1,
@@ -185,10 +197,10 @@ class _RecipeListHomeListState extends State<RecipeListHome> {
                           },
                           style: IconButton.styleFrom(
                             backgroundColor: Colors.white,
-                            fixedSize: Size(30, 30),
+                            fixedSize: const Size(30, 30),
                           ),
                           iconSize: 20,
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.delete_outline,
                             size: 25,
                             color: Colors.lightBlue,

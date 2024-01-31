@@ -20,31 +20,6 @@ class Ingredient {
     };
   }
 
-  // factory Ingredient.fromMap(Map<String, dynamic>? map) {
-  //   if (map == null) {
-  //     return Ingredient(metric: Measurement(unit: '', value: 0.0), name: '');
-  //   }
-
-  //   final Map<String, dynamic>? amountMap =
-  //       map['amount'] as Map<String, dynamic>?;
-
-  //   if (amountMap == null || amountMap['metric'] == null) {
-  //     // Handle the case where 'amount' or 'metric' is null
-  //     return Ingredient(
-  //         metric: Measurement(unit: '', value: 0.0), name: map['name'] ?? '');
-  //   }
-
-  //   final Map<String, dynamic>? metricAmountMap =
-  //       amountMap['metric'] as Map<String, dynamic>?;
-
-  //   return Ingredient(
-  //     metric: metricAmountMap != null
-  //         ? Measurement.fromMap(metricAmountMap)
-  //         : Measurement(unit: '', value: 0.0),
-  //     name: map['name'] ?? '',
-  //   );
-  // }
-
   factory Ingredient.fromMap(Map<String, dynamic>? map) {
     if (map == null) {
       return Ingredient(metric: Measurement(unit: '', value: 0.0), name: '');
@@ -96,12 +71,13 @@ class Measurement {
   }
 }
 
+// Get the ingredients of a specific recipe by it's ID from the API
 class IngredientManager {
   List<Ingredient> ingredients = [];
 
   final apikey = APIKey();
 
-  Future<void> fetchData2(int recipeId) async {
+  Future<void> fetchIngredientsData(int recipeId) async {
     final url =
         'https://api.spoonacular.com/recipes/$recipeId/ingredientWidget.json?apiKey=${apikey.apikey2}';
 

@@ -40,12 +40,13 @@ class Nutrient {
   }
 }
 
+// Get the nutrients of a specific recipe by it's ID from the API
 class NutrientManager {
   List<Nutrient> nutrients = [];
 
   final apikey = APIKey();
 
-  Future<void> fetchData(int recipeId) async {
+  Future<void> fetchNutrientsData(int recipeId) async {
     final url =
         'https://api.spoonacular.com/recipes/$recipeId/nutritionWidget.json?apiKey=${apikey.apikey2}';
 

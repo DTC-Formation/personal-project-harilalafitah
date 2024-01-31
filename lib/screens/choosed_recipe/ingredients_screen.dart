@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipes_app/models/Recipe_model/recipe_from_api.dart';
 
+// The ingredients list for the cooking screen
 class IngredientsScreen extends StatefulWidget {
   final RecipeInfo food;
   const IngredientsScreen({super.key, required this.food});
@@ -13,7 +14,7 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       shrinkWrap: true,
       itemCount: widget.food.ingredients.length,
       itemBuilder: (context, index) {
@@ -24,20 +25,22 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
+                SizedBox(
                   width: 215,
+                  // Ingredient name
                   child: Text(
-                    '${ingredient.name}',
-                    style: TextStyle(
+                    ingredient.name,
+                    style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
+                // Ingredient value and unit
                 Text(
                   '${ingredient.metric.value} ${ingredient.metric.unit}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                   ),
                 ),
@@ -46,7 +49,7 @@ class _IngredientsScreenState extends State<IngredientsScreen> {
           ),
         );
       },
-      separatorBuilder: (context, index) => Divider(),
+      separatorBuilder: (context, index) => const Divider(),
     );
   }
 }

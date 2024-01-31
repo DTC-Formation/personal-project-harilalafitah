@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:recipes_app/models/Recipe_model/recipe_from_api.dart';
 
+// Home search bar
 class HomeSearchBar extends StatefulWidget {
   final Function(String) onSearch;
   const HomeSearchBar({
@@ -33,23 +34,23 @@ class _HomeSearchBarState extends State<HomeSearchBar> {
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
       ),
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: 20,
         vertical: 5,
       ),
       child: Row(
         children: [
-          Icon(
+          const Icon(
             Iconsax.search_normal,
             color: Colors.lightBlue,
           ),
-          SizedBox(
+          const SizedBox(
             width: 10.0,
           ),
           Expanded(
             child: TextField(
               onChanged: (value) => updateList(value),
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
                 hintText: 'Search any recipes',
                 hintStyle: TextStyle(

@@ -8,6 +8,7 @@ import 'package:recipes_app/widgets/app_bar/appbar_customable.dart';
 import 'package:recipes_app/widgets/app_bar/notif_dialog.dart';
 import 'package:recipes_app/widgets/recipes_widget/food_card.dart';
 
+// Screen that displays the available recipes
 class FoodListScreen extends StatefulWidget {
   final String selectedCategory;
   const FoodListScreen({super.key, required this.selectedCategory});
@@ -28,19 +29,22 @@ class _QuickFoodState extends State<FoodListScreen> {
     // }
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(0, 255, 255, 255),
+        backgroundColor: const Color.fromARGB(0, 255, 255, 255),
         automaticallyImplyLeading: false,
         title: Padding(
           padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+          // App bar widget
           child: AppBarCustom(
             titre: "Available recipes",
-            icon1: Icon(
+            // Button 1
+            icon1: const Icon(
               CupertinoIcons.chevron_back,
               color: Colors.blueAccent,
             ),
             onPressed1: () {
               Navigator.pop(context);
             },
+            // Button 2
             icon2: Icon(
               Iconsax.notification,
               color: Colors.yellow.shade800,
@@ -49,7 +53,7 @@ class _QuickFoodState extends State<FoodListScreen> {
               showDialog(
                   context: context,
                   builder: (context) {
-                    return NotifDialog();
+                    return const NotifDialog();
                   });
             },
           ),
@@ -65,8 +69,8 @@ class _QuickFoodState extends State<FoodListScreen> {
               children: [
                 GridView.builder(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 1,
                     crossAxisSpacing: 20,
                     mainAxisSpacing: 20,

@@ -64,12 +64,13 @@ class InstructionStep {
   }
 }
 
+// Get the instructions of a specific recipe by it's ID from the API
 class InstructionsManager {
   List<AnalyzedInstructions> instructs = [];
 
   final apikey = APIKey();
 
-  Future<void> fetchDataForRecipe(int recipeId) async {
+  Future<void> fetchInstructionsData(int recipeId) async {
     final url =
         'https://api.spoonacular.com/recipes/$recipeId/analyzedInstructions?apiKey=${apikey.apikey2}';
 

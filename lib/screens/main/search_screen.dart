@@ -5,14 +5,16 @@ import 'package:recipes_app/models/providers/recipe_provider.dart';
 import 'package:recipes_app/widgets/app_bar/home_search_bar.dart';
 import 'package:recipes_app/widgets/recipes_widget/food_card.dart';
 
+// Search screen
 class SearchScreen extends StatefulWidget {
-  const SearchScreen({Key? key});
+  const SearchScreen({super.key});
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  // A list for every recipes in the DB
   late List<RecipeInfo> allFoods;
   List<RecipeInfo> displayedFoods = [];
 
@@ -23,6 +25,7 @@ class _SearchScreenState extends State<SearchScreen> {
     displayedFoods = List.from(allFoods);
   }
 
+  // Update the list with the appropriate recipes based on the search
   void updateList(String value) {
     setState(() {
       displayedFoods.clear();
@@ -37,10 +40,11 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(0, 255, 255, 255),
+        backgroundColor: const Color.fromARGB(0, 255, 255, 255),
         automaticallyImplyLeading: false,
         title: Padding(
           padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+          // App bar, Home search bar widget
           child: HomeSearchBar(onSearch: updateList),
         ),
         toolbarHeight: 75.0,
@@ -54,8 +58,8 @@ class _SearchScreenState extends State<SearchScreen> {
               children: [
                 GridView.builder(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 1,
                     crossAxisSpacing: 20,
                     mainAxisSpacing: 20,

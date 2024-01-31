@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:recipes_app/models/Recipe_model/recipe_from_api.dart';
 import 'package:recipes_app/models/providers/recipe_provider.dart';
 
+// Rating bar widget
 class RatingBarWidget extends StatefulWidget {
   final RecipeInfo recipeInfo;
   final void Function(double rating) onRatingChanged;
@@ -28,8 +29,8 @@ class _RatingBarWidgetState extends State<RatingBarWidget> {
         minRating: 0,
         direction: Axis.horizontal,
         allowHalfRating: true,
-        itemPadding: EdgeInsets.symmetric(horizontal: 4),
-        itemBuilder: (context, index) => Icon(
+        itemPadding: const EdgeInsets.symmetric(horizontal: 4),
+        itemBuilder: (context, index) => const Icon(
           Iconsax.star1,
           color: Colors.amber,
         ),

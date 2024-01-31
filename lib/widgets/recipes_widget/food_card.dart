@@ -5,6 +5,7 @@ import 'package:recipes_app/models/Recipe_model/recipe_from_api.dart';
 import 'package:recipes_app/models/providers/recipe_provider.dart';
 import 'package:recipes_app/screens/choosed_recipe/recipe_screen.dart';
 
+// A food card model to display the recipe in a list
 class FoodCard extends StatefulWidget {
   final RecipeInfo food;
   const FoodCard({super.key, required this.food});
@@ -16,6 +17,7 @@ class FoodCard extends StatefulWidget {
 class _FoodCardState extends State<FoodCard> {
   @override
   Widget build(BuildContext context) {
+    // Take to the recipe screen details
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
@@ -35,16 +37,18 @@ class _FoodCardState extends State<FoodCard> {
                   height: 150,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
+                    // The recipe image
                     image: DecorationImage(
                       image: NetworkImage(widget.food.recipe.image),
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
+                // The recipe title
                 Text(
                   widget.food.recipe.title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
                   ),
@@ -53,14 +57,15 @@ class _FoodCardState extends State<FoodCard> {
                 ),
                 Row(
                   children: [
+                    // The recipe nutrient
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Iconsax.flash_1,
                           size: 18,
                           color: Colors.lightBlue,
                         ),
-                        SizedBox(width: 5),
+                        const SizedBox(width: 5),
                         Text(
                           "${widget.food.nutrients[0].amount} Kcal",
                           style: TextStyle(
@@ -70,22 +75,23 @@ class _FoodCardState extends State<FoodCard> {
                         ),
                       ],
                     ),
-                    SizedBox(width: 5),
+                    const SizedBox(width: 5),
                     Text(
                       '|',
                       style: TextStyle(
                         color: Colors.blue.shade800,
                       ),
                     ),
-                    SizedBox(width: 5),
+                    const SizedBox(width: 5),
+                    // The recipe cooking time
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Iconsax.clock,
                           size: 18,
                           color: Colors.lightBlue,
                         ),
-                        SizedBox(width: 5),
+                        const SizedBox(width: 5),
                         Text(
                           "${widget.food.recipe.totalTime} Min",
                           style: TextStyle(
@@ -97,6 +103,7 @@ class _FoodCardState extends State<FoodCard> {
                     ),
                   ],
                 ),
+                // The widget rating
                 Row(
                   children: [
                     Icon(
@@ -104,10 +111,10 @@ class _FoodCardState extends State<FoodCard> {
                       color: Colors.yellow.shade700,
                       size: 20,
                     ),
-                    SizedBox(width: 5),
+                    const SizedBox(width: 5),
                     Text(
                       "${widget.food.rating}/5",
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.black87,
                         fontSize: 12.0,
                       ),
@@ -116,6 +123,7 @@ class _FoodCardState extends State<FoodCard> {
                 )
               ],
             ),
+            // Favorite button
             Positioned(
               top: 1,
               right: 1,
@@ -130,17 +138,18 @@ class _FoodCardState extends State<FoodCard> {
                 },
                 style: IconButton.styleFrom(
                   backgroundColor: Colors.white,
-                  fixedSize: Size(30, 30),
+                  fixedSize: const Size(30, 30),
                 ),
                 iconSize: 20,
                 icon: widget.food.isLiked
-                    ? Icon(Iconsax.heart5, color: Colors.red)
-                    : Icon(
+                    ? const Icon(Iconsax.heart5, color: Colors.red)
+                    : const Icon(
                         Iconsax.heart,
                         color: Colors.red,
                       ),
               ),
             ),
+            // Delete button
             Positioned(
               top: 1,
               left: 1,
@@ -154,10 +163,10 @@ class _FoodCardState extends State<FoodCard> {
                 },
                 style: IconButton.styleFrom(
                   backgroundColor: Colors.white,
-                  fixedSize: Size(30, 30),
+                  fixedSize: const Size(30, 30),
                 ),
                 iconSize: 20,
-                icon: Icon(
+                icon: const Icon(
                   Icons.delete_outline,
                   size: 25,
                   color: Colors.lightBlue,

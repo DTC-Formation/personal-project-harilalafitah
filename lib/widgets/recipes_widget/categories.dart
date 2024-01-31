@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipes_app/models/Recipe_model/categories_model.dart';
 
+// Categories list button
 class Categories extends StatefulWidget {
   const Categories({
     super.key,
@@ -34,11 +35,11 @@ class _CategoriesState extends State<Categories> {
                     : Colors.white,
                 borderRadius: BorderRadius.circular(25),
               ),
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 20,
                 vertical: 10,
               ),
-              margin: EdgeInsets.only(right: 20),
+              margin: const EdgeInsets.only(right: 20),
               child: Text(
                 categories[index],
                 style: TextStyle(

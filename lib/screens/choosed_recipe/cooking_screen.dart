@@ -5,6 +5,7 @@ import 'package:recipes_app/screens/choosed_recipe/ingredients_screen.dart';
 import 'package:recipes_app/screens/choosed_recipe/instructions_screen.dart';
 import 'package:recipes_app/widgets/app_bar/appbar_customable.dart';
 
+// The cooking screen
 class CookingPage extends StatefulWidget {
   final RecipeInfo food;
   const CookingPage({super.key, required this.food});
@@ -20,20 +21,23 @@ class _CookingPageState extends State<CookingPage> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(0, 255, 255, 255),
+          backgroundColor: const Color.fromARGB(0, 255, 255, 255),
           automaticallyImplyLeading: false,
           title: Padding(
             padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+            // AppBar widget
             child: AppBarCustom(
               titre: "Cooking time!",
-              icon1: Icon(
+              // Button 1
+              icon1: const Icon(
                 CupertinoIcons.chevron_back,
                 color: Colors.blueAccent,
               ),
               onPressed1: () {
                 Navigator.pop(context);
               },
-              icon2: Icon(
+              // Button 2
+              icon2: const Icon(
                 Icons.restaurant_menu,
                 size: 25,
                 color: Colors.lightBlue,
@@ -42,17 +46,17 @@ class _CookingPageState extends State<CookingPage> {
             ),
           ),
           toolbarHeight: 75.0,
-          bottom: TabBar(
+          bottom: const TabBar(
             tabs: [
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(10.0),
                 child: Text(
                   'Ingredients',
                   style: TextStyle(fontSize: 20),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(10.0),
                 child: Text(
                   'Instructions',
                   style: TextStyle(fontSize: 20),

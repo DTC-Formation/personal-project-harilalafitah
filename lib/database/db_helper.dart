@@ -49,6 +49,7 @@ class DbHelper {
   //   return tasks.map((e) => RecipeInfo.fromMap(e)).toList();
   // }
 
+  // Get all the recipes of the database
   Future<List<RecipeInfo>> getAllRecipes() async {
     List<Map<String, dynamic>> tasks = await database.query(tableName);
     return tasks.map((e) {
@@ -70,7 +71,7 @@ class DbHelper {
     }).toList();
   }
 
-  // Insert a list of RecipeInfo objects
+  //to insert a list of RecipeInfo objects
   Future<void> insertNewRecipes(List<RecipeInfo> recipeInfos) async {
     Batch batch = database.batch();
 
@@ -92,7 +93,7 @@ class DbHelper {
     await batch.commit();
   }
 
-//to insert
+//to insert a new recipe
   void insertNewRecipe(RecipeInfo recipeInfo) {
     database.insert(
       tableName,
@@ -121,7 +122,7 @@ class DbHelper {
     database.delete(tableName);
   }
 
-//tp update data
+// Update a recipe in the database
   updateRecipe(RecipeInfo recipeInfo) async {
     await database.update(
       tableName,
@@ -140,6 +141,7 @@ class DbHelper {
     );
   }
 
+  // Update the isLiked statue for a recipe
   updateIsLiked(RecipeInfo recipeInfo) {
     database.update(
       tableName,
@@ -159,23 +161,24 @@ class DbHelper {
     );
   }
 
-  printDatabaseContent() async {
-    List<RecipeInfo?> recipes = await DbHelper.dbHelper.getAllRecipes();
-    print(recipes.length);
-    // Afficher le contenu
-    // recipes.forEach((recipe) {
-    //   if (recipe != null) {
-    //     print('Recipe ID: ${recipe.id}');
-    //     print('Recipe Name: ${recipe.recipe.title}');
-    //     print('Recipe totalTime: ${recipe.recipe.totalTime}');
-    //     print('Recipe servings: ${recipe.recipe.serves}');
-    //     print('Instructions: ${recipe.instructions}');
-    //     print('Ingredients: ${recipe.ingredients}');
-    //     print('Nutrients: ${recipe.nutrients}');
-    //     print('Is Liked: ${recipe.isLiked}');
-    //     print('Rating: ${recipe.rating}');
-    //     print('-------------------------');
-    //   }
-    // });
-  }
+  // Print the recipes of the database in the console
+  // printDatabaseContent() async {
+  //   List<RecipeInfo?> recipes = await DbHelper.dbHelper.getAllRecipes();
+  //   print(recipes.length);
+  //   Afficher le contenu
+  //   recipes.forEach((recipe) {
+  //     if (recipe != null) {
+  //       print('Recipe ID: ${recipe.id}');
+  //       print('Recipe Name: ${recipe.recipe.title}');
+  //       print('Recipe totalTime: ${recipe.recipe.totalTime}');
+  //       print('Recipe servings: ${recipe.recipe.serves}');
+  //       print('Instructions: ${recipe.instructions}');
+  //       print('Ingredients: ${recipe.ingredients}');
+  //       print('Nutrients: ${recipe.nutrients}');
+  //       print('Is Liked: ${recipe.isLiked}');
+  //       print('Rating: ${recipe.rating}');
+  //       print('-------------------------');
+  //     }
+  //   });
+  // }
 }

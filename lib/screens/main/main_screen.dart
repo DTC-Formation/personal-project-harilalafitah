@@ -5,6 +5,7 @@ import 'package:recipes_app/screens/main/home_screen.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:recipes_app/screens/main/search_screen.dart';
 
+// Main Screen
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
@@ -18,6 +19,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //Bottom navBar
       bottomNavigationBar: Container(
         color: Colors.grey.shade800,
         child: Padding(
@@ -27,21 +29,24 @@ class _MainScreenState extends State<MainScreen> {
             backgroundColor: Colors.grey.shade800,
             color: Colors.white,
             tabBackgroundColor: Colors.grey.shade300,
-            padding: EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(20.0),
             gap: 10,
             tabs: [
+              // Home button
               GButton(
                 gap: 8,
                 icon: (currrentTab == 0) ? Iconsax.home5 : Iconsax.home,
                 iconActiveColor: Colors.lightBlue,
                 text: 'Home',
               ),
+              // Favorite button
               GButton(
                 icon: (currrentTab == 1) ? Iconsax.heart5 : Iconsax.heart,
                 iconActiveColor: Colors.red,
                 text: 'Favorites',
               ),
-              GButton(
+              // Search button
+              const GButton(
                 gap: 8,
                 icon: Iconsax.search_normal,
                 iconActiveColor: Colors.lightBlue,
@@ -65,19 +70,19 @@ class _MainScreenState extends State<MainScreen> {
 }
 
 Widget getPage({required int index}) {
-  Widget widget = HomeScreen();
+  Widget widget = const HomeScreen();
 
   switch (index) {
     case 0:
-      widget = HomeScreen();
+      widget = const HomeScreen();
       break;
 
     case 1:
-      widget = FavoriteFoodScreen();
+      widget = const FavoriteFoodScreen();
       break;
 
     case 2:
-      widget = SearchScreen();
+      widget = const SearchScreen();
       break;
   }
   return widget;

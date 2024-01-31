@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:recipes_app/database/db_helper.dart';
 import 'package:recipes_app/widgets/app_bar/notif_dialog.dart';
 
+// Home app bar
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({
     super.key,
@@ -14,7 +14,7 @@ class HomeAppBar extends StatelessWidget {
       padding: const EdgeInsets.only(top: 15.0),
       child: Row(
         children: [
-          Text(
+          const Text(
             'What are you\ncooking today?',
             style: TextStyle(
               fontSize: 32.0,
@@ -22,14 +22,14 @@ class HomeAppBar extends StatelessWidget {
               height: 1,
             ),
           ),
-          Spacer(),
+          const Spacer(),
+          // Notif button
           IconButton(
             onPressed: () async {
-              await DbHelper.dbHelper.printDatabaseContent();
               showDialog(
                   context: context,
                   builder: (context) {
-                    return NotifDialog();
+                    return const NotifDialog();
                   });
             },
             style: IconButton.styleFrom(
@@ -38,9 +38,9 @@ class HomeAppBar extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
               ),
               backgroundColor: Colors.white,
-              fixedSize: Size(55.0, 55.0),
+              fixedSize: const Size(55.0, 55.0),
             ),
-            icon: Icon(Iconsax.notification),
+            icon: const Icon(Iconsax.notification),
           ),
         ],
       ),

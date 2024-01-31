@@ -10,6 +10,7 @@ import 'package:recipes_app/widgets/app_bar/notif_dialog.dart';
 import 'package:recipes_app/widgets/rating_widget/rating_widget.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
+// Display a specific recipe infos
 class RecipesScreen extends StatefulWidget {
   final RecipeInfo food;
 
@@ -41,11 +42,13 @@ class _RecipesDetailsState extends State<RecipesScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      // Bottom navBar
       bottomNavigationBar: Container(
         color: Colors.grey.shade800,
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Row(
           children: [
+            // Start cooking button
             Expanded(
               flex: 6,
               child: ElevatedButton(
@@ -61,10 +64,11 @@ class _RecipesDetailsState extends State<RecipesScreen> {
                     ),
                   );
                 },
-                child: Text("Start cooking"),
+                child: const Text("Start cooking"),
               ),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
+            // Favorite button
             Expanded(
               child: IconButton(
                 style: IconButton.styleFrom(
@@ -91,19 +95,20 @@ class _RecipesDetailsState extends State<RecipesScreen> {
           ],
         ),
       ),
+      // Sliding Panel
       body: SlidingUpPanel(
         color: Colors.grey.shade200,
         isDraggable: true,
         parallaxEnabled: true,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(24.0),
           topRight: Radius.circular(24.0),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 12.0),
+        padding: const EdgeInsets.symmetric(horizontal: 12.0),
         minHeight: size.height / 2.5,
         maxHeight: size.height / 2.0,
         panel: Padding(
-          padding: EdgeInsets.only(
+          padding: const EdgeInsets.only(
             left: 16.0,
             right: 16.0,
             top: 16.0,
@@ -111,6 +116,7 @@ class _RecipesDetailsState extends State<RecipesScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Little deco on top of the sliding panel
               Center(
                 child: Container(
                   height: 5.0,
@@ -121,8 +127,9 @@ class _RecipesDetailsState extends State<RecipesScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 35.0),
+              const SizedBox(height: 35.0),
               Center(
+                // Recipe title
                 child: Text(
                   widget.food.recipe.title,
                   style: GoogleFonts.poppins(
@@ -133,36 +140,37 @@ class _RecipesDetailsState extends State<RecipesScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 20.0),
-              Container(
+              const SizedBox(height: 20.0),
+              SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
+                        // Display the nutrient
                         ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
-                            fixedSize: Size(150, 75),
+                            fixedSize: const Size(150, 75),
                             backgroundColor: Colors.grey.shade400,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                            padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
                             child: Column(
                               children: <Widget>[
-                                Icon(
+                                const Icon(
                                   Iconsax.flash_1,
                                   color: Colors.yellowAccent,
                                   size: 38.0,
                                 ),
-                                SizedBox(height: 3.0),
+                                const SizedBox(height: 3.0),
                                 Text(
                                   '${widget.food.nutrients[0].amount} kcal',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 15.0,
@@ -172,29 +180,30 @@ class _RecipesDetailsState extends State<RecipesScreen> {
                             ),
                           ),
                         ),
-                        SizedBox(width: 10.0),
+                        const SizedBox(width: 10.0),
+                        // Display the Servings
                         ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
-                            fixedSize: Size(150, 75),
+                            fixedSize: const Size(150, 75),
                             backgroundColor: Colors.grey.shade400,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                            padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
                             child: Column(
                               children: <Widget>[
-                                Icon(
+                                const Icon(
                                   Icons.restaurant_menu,
                                   color: Colors.lightBlue,
                                   size: 38.0,
                                 ),
-                                SizedBox(height: 3.0),
+                                const SizedBox(height: 3.0),
                                 Text(
                                   '${widget.food.recipe.serves} servings',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 15.5,
@@ -206,32 +215,33 @@ class _RecipesDetailsState extends State<RecipesScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
+                        // Display the cooking time
                         ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
-                            fixedSize: Size(150, 75),
+                            fixedSize: const Size(150, 75),
                             backgroundColor: Colors.grey.shade400,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                            padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
                             child: Column(
                               children: <Widget>[
-                                Icon(
+                                const Icon(
                                   Iconsax.clock,
                                   color: Colors.lightBlue,
                                   size: 38.0,
                                 ),
-                                SizedBox(height: 3.0),
+                                const SizedBox(height: 3.0),
                                 Text(
                                   '${widget.food.recipe.totalTime} mins',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 16.5,
@@ -241,29 +251,30 @@ class _RecipesDetailsState extends State<RecipesScreen> {
                             ),
                           ),
                         ),
-                        SizedBox(width: 10),
+                        const SizedBox(width: 10),
+                        // Display the number of stars (Rating) of the recipe
                         ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
-                            fixedSize: Size(150, 75),
+                            fixedSize: const Size(150, 75),
                             backgroundColor: Colors.grey.shade400,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                            padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
                             child: Column(
                               children: <Widget>[
-                                Icon(
+                                const Icon(
                                   Iconsax.star5,
                                   color: Colors.amber,
                                   size: 38.0,
                                 ),
-                                SizedBox(height: 3.0),
+                                const SizedBox(height: 3.0),
                                 Text(
                                   '$currentRating/5 stars',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 16.5,
@@ -278,15 +289,16 @@ class _RecipesDetailsState extends State<RecipesScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
+              // Rating Bar
               RatingBarWidget(
                 recipeInfo: widget.food,
                 onRatingChanged: (double rating) {
                   updateRating(rating);
                 },
               ),
-              SizedBox(height: 5.0),
-              Center(
+              const SizedBox(height: 5.0),
+              const Center(
                 child: Text(
                   '(Would You rate the recipe?)',
                   style: TextStyle(
@@ -303,6 +315,7 @@ class _RecipesDetailsState extends State<RecipesScreen> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
+                  // The image of the recipe(In background)
                   Hero(
                     tag: widget.food.recipe.image,
                     child: ClipRRect(
@@ -316,6 +329,7 @@ class _RecipesDetailsState extends State<RecipesScreen> {
                   ),
                 ],
               ),
+              // Back button
               Positioned(
                 top: 40,
                 left: 20,
@@ -324,7 +338,7 @@ class _RecipesDetailsState extends State<RecipesScreen> {
                   radius: 30,
                   child: InkWell(
                     onTap: () => Navigator.pop(context),
-                    child: CircleAvatar(
+                    child: const CircleAvatar(
                       backgroundColor: Colors.white,
                       radius: 30,
                       child: Icon(
@@ -336,6 +350,7 @@ class _RecipesDetailsState extends State<RecipesScreen> {
                   ),
                 ),
               ),
+              // Notif button
               Positioned(
                 top: 40,
                 right: 20,
@@ -343,7 +358,7 @@ class _RecipesDetailsState extends State<RecipesScreen> {
                   onTap: () => showDialog(
                       context: context,
                       builder: (context) {
-                        return NotifDialog();
+                        return const NotifDialog();
                       }),
                   child: CircleAvatar(
                     backgroundColor: Colors.white,

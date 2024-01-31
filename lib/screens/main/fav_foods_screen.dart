@@ -9,6 +9,7 @@ import 'package:recipes_app/widgets/app_bar/appbar_customable.dart';
 import 'package:recipes_app/widgets/app_bar/notif_dialog.dart';
 import 'package:recipes_app/widgets/recipes_widget/food_card.dart';
 
+// The favorite recipes screen
 class FavoriteFoodScreen extends StatefulWidget {
   const FavoriteFoodScreen({
     super.key,
@@ -23,23 +24,21 @@ class _FavoriteFoodScreenState extends State<FavoriteFoodScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // final isFavProvider = context.watch<IsFavProvider>();
-    // final favoriteRecipes = isFavProvider.favoriteRecipes;
-    // List<RecipeInfo> filteredFoods = favoriteRecipes;
-
     List<RecipeInfo> favoriteRecipes =
         context.watch<RecipeProvider>().favoriteRecipes;
     List<RecipeInfo> filteredFoods = favoriteRecipes;
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(0, 255, 255, 255),
+        backgroundColor: const Color.fromARGB(0, 255, 255, 255),
         automaticallyImplyLeading: false,
         title: Padding(
           padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+          // App bar widget
           child: AppBarCustom(
             titre: "Favorites",
-            icon1: Icon(
+            // Button 1
+            icon1: const Icon(
               Iconsax.menu_board,
               color: Colors.lightBlue,
             ),
@@ -53,6 +52,7 @@ class _FavoriteFoodScreenState extends State<FavoriteFoodScreen> {
                 ),
               );
             },
+            // Button 2
             icon2: Icon(
               Iconsax.notification,
               color: Colors.yellow.shade800,
@@ -61,7 +61,7 @@ class _FavoriteFoodScreenState extends State<FavoriteFoodScreen> {
               showDialog(
                   context: context,
                   builder: (context) {
-                    return NotifDialog();
+                    return const NotifDialog();
                   });
             },
           ),
@@ -72,12 +72,14 @@ class _FavoriteFoodScreenState extends State<FavoriteFoodScreen> {
         child: Padding(
           padding: const EdgeInsets.all(7.5),
           child: favoriteRecipes.isEmpty
-              ? Container(
+              // A text to display if there is no fav recipe yet
+              ? SizedBox(
                   height: MediaQuery.of(context).size.height / 1.5,
-                  child: Center(
+                  child: const Center(
                     child: Text("Add your favorite recipes"),
                   ),
                 )
+              // The manner to display the fav recipes
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -85,13 +87,15 @@ class _FavoriteFoodScreenState extends State<FavoriteFoodScreen> {
                       padding: const EdgeInsets.all(10.0),
                       child: GridView.builder(
                         shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           crossAxisSpacing: 20,
                           mainAxisSpacing: 20,
                           mainAxisExtent: 225,
                         ),
+                        // Food card recipe to display the recipes
                         itemBuilder: (context, index) => FoodCard(
                           food: filteredFoods[index],
                         ),

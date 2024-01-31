@@ -6,6 +6,7 @@ import 'package:recipes_app/models/api/recipe_ingredients_api.dart';
 import 'package:recipes_app/models/api/recipe_instructions_api.dart';
 import 'package:recipes_app/models/api/recipe_nutrients_api.dart';
 
+// A model for the recipes
 class RecipeInfo {
   int? id;
   final RecipeFromApi recipe;
@@ -55,24 +56,26 @@ class RecipeInfo {
     );
   }
 
+  // Fuction to toggle the favorite button
   void toggleLiked() {
     isLiked = !isLiked;
   }
 
-  // @override
-  // String toString() {
-  //   return 'RecipeInfo {'
-  //       'id: $id, '
-  //       'recipe: $recipe, '
-  //       'instructions: $instructions, '
-  //       'ingredients: $ingredients, '
-  //       'nutrients: $nutrients, '
-  //       'isLiked: $isLiked, '
-  //       'rating: $rating'
-  //       '}';
-  // }
+  @override
+  String toString() {
+    return 'RecipeInfo {'
+        'id: $id, '
+        'recipe: $recipe, '
+        'instructions: $instructions, '
+        'ingredients: $ingredients, '
+        'nutrients: $nutrients, '
+        'isLiked: $isLiked, '
+        'rating: $rating'
+        '}';
+  }
 }
 
+// To fetch, create, and insert in the DB, recipes from the API
 class GetRecipeData {
   static final RecipeManager recipeManager = RecipeManager();
   static final List<RecipeInfo> _recipeInfos = [];
@@ -81,10 +84,10 @@ class GetRecipeData {
 
   static Future<void> fetchDataAndBuildRecipeInfos() async {
     try {
-      await recipeManager.fetchData();
+      // Fetch the recipe name, IDs...
+      await recipeManager.fetchRecipeData();
 
-      // _recipeInfos.clear();
-
+      // Make a boucle to fetch the recipes data by theire IDs
       if (recipeManager.recipes.isNotEmpty) {
         for (var recipe in recipeManager.recipes) {
           int recipeId = recipe.id;
@@ -93,9 +96,9 @@ class GetRecipeData {
           final IngredientManager ingredientsManager = IngredientManager();
           final NutrientManager nutrientsManager = NutrientManager();
 
-          await instructionsManager.fetchDataForRecipe(recipeId);
-          await ingredientsManager.fetchData2(recipeId);
-          await nutrientsManager.fetchData(recipeId);
+          await instructionsManager.fetchInstructionsData(recipeId);
+          await ingredientsManager.fetchIngredientsData(recipeId);
+          await nutrientsManager.fetchNutrientsData(recipeId);
 
           _recipeInfos.add(RecipeInfo(
             recipe: recipe,
@@ -115,7 +118,6 @@ class GetRecipeData {
 
   static Future insertData() async {
     DbHelper.dbHelper.insertNewRecipes(GetRecipeData._recipeInfos);
-    // print(_recipeInfos);
-    print('Data DB insere!'); // Pass the list
+    print('Data DB insere!');
   }
 }

@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           fontFamily: GoogleFonts.poppins().fontFamily,
         ),
-        home: MainScreen(),
+        home: const MainScreen(),
       ),
     );
   }

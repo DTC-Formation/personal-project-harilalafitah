@@ -46,6 +46,7 @@ class RecipeFromApi {
   }
 }
 
+// To get random recipes from the API
 class RecipeManager {
   List<RecipeFromApi> _recipes = [];
 
@@ -53,7 +54,7 @@ class RecipeManager {
 
   final apikey = APIKey();
 
-  Future<void> fetchData() async {
+  Future<void> fetchRecipeData() async {
     final url =
         'https://api.spoonacular.com/recipes/random?number=10&apiKey=${apikey.apikey2}';
     try {

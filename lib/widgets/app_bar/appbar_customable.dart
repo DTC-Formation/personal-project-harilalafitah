@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// App bar widget
 class AppBarCustom extends StatefulWidget {
   final String titre;
   final Icon icon1;
@@ -30,29 +31,29 @@ class _QuickScreenAppBarState extends State<AppBarCustom> {
           },
           style: IconButton.styleFrom(
             backgroundColor: Colors.white,
-            fixedSize: Size(55.0, 55.0),
+            fixedSize: const Size(55.0, 55.0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadiusDirectional.circular(15),
             ),
           ),
           icon: widget.icon1,
         ),
-        Spacer(),
+        const Spacer(),
         Text(
           widget.titre,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 20.0,
             fontWeight: FontWeight.bold,
           ),
         ),
-        Spacer(),
+        const Spacer(),
         IconButton(
           onPressed: () {
             widget.onPressed2();
           },
           style: IconButton.styleFrom(
             backgroundColor: Colors.white,
-            fixedSize: Size(55.0, 55.0),
+            fixedSize: const Size(55.0, 55.0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadiusDirectional.circular(15),
             ),

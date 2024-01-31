@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Notif dialog for the notifications
 class NotifDialog extends StatelessWidget {
   const NotifDialog({
     super.key,
@@ -18,7 +19,7 @@ class NotifDialog extends StatelessWidget {
           ),
           child: Column(
             children: [
-              Text(
+              const Text(
                 'More contents coming soon! >_- ',
                 style: TextStyle(
                     color: Colors.black54,
@@ -29,7 +30,7 @@ class NotifDialog extends StatelessWidget {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: Text('Back'),
+                child: const Text('Back'),
               ),
             ],
           ),
