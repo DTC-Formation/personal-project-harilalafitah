@@ -61,5 +61,5 @@ Avec cette nouvelle fonctionnalité, les utilisateurs ayant un compte pourront p
 Nous sommes impatients de mettre en œuvre ces mises à jour qui amélioreront significativement votre expérience sur l'application "Recipe Sharing". Restez à l'écoute pour plus d'annonces et de détails lors du déploiement de ces fonctionnalités passionnantes !
 
 
-Ressources
+Ressources :
 L'application "Recipe Sharing" utilise la Spoonacular API pour enrichir son contenu et offrir des fonctionnalités étendues. Pour plus d'informations sur l'API, veuillez consulter la documentation officielle de Spoonacular.
